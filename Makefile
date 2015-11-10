@@ -192,8 +192,8 @@ SUBARCH := $(shell uname -m | sed -e s/i.86/i386/ -e s/sun4u/sparc64/ \
 # Default value for CROSS_COMPILE is not to prefix executables
 # Note: Some architectures assign CROSS_COMPILE in their arch/*/Makefile
 export KBUILD_BUILDHOST := $(SUBARCH)
-ARCH		?= $(SUBARCH)
-CROSS_COMPILE	?= $(CONFIG_CROSS_COMPILE:"%"=%)
+ARCH		?= arm
+CROSS_COMPILE	?= ../../../prebuilts/gcc/linux-x86/arm/arm-eabi-4.8/bin/arm-eabi-
 
 # Architecture as present in compile.h
 UTS_MACHINE 	:= $(ARCH)
@@ -357,10 +357,10 @@ MODFLAGS	= -marm -mtune=cortex-a7 -mcpu=cortex-a7 -mfpu=neon-vfpv4 \
 		  -frename-registers -ftree-loop-linear -ftree-vectorize \
 		  -fmodulo-sched -ffast-math -funsafe-math-optimizations \
 		  -std=gnu89
-CFLAGS_MODULE   = -DMODULE $(MODFLAGS)
-AFLAGS_MODULE   = -DMODULE $(MODFLAGS)
+CFLAGS_MODULE   = 
+AFLAGS_MODULE   = 
 LDFLAGS_MODULE  =
-CFLAGS_KERNEL	= $(MODFLAGS)
+CFLAGS_KERNEL	= 
 AFLAGS_KERNEL	=
 CFLAGS_GCOV	= -fprofile-arcs -ftest-coverage
 
@@ -379,8 +379,7 @@ KBUILD_CFLAGS   := -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs \
 		   -fno-strict-aliasing -fno-common \
 		   -Werror-implicit-function-declaration \
 		   -Wno-format-security \
-		   -fno-delete-null-pointer-checks \
-		   $(MODFLAGS)
+		   -fno-delete-null-pointer-checks 
 KBUILD_AFLAGS_KERNEL :=
 KBUILD_CFLAGS_KERNEL :=
 KBUILD_AFLAGS   := -D__ASSEMBLY__
